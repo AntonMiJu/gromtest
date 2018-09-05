@@ -1,4 +1,4 @@
-package homework;
+package lesson5.homework;
 
 public class task3 {
     static int uniqueCount(int[] array){

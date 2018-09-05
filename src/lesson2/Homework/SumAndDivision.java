@@ -1,4 +1,4 @@
-package Homework;
+package lesson2.Homework;
 
 public class SumAndDivision {
     public static void main(String[] args) {

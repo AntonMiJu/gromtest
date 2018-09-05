@@ -1,3 +1,5 @@
+package lesson3;
+
 public class TernaryOperator {
     public static void main(String[] args) {
         int a;

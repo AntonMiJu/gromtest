@@ -1,3 +1,5 @@
+package lesson4;
+
 public class MethodExample {
 
     public static void main(String[] args) {

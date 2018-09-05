@@ -1,6 +1,4 @@
-package homework;
-
-import java.util.Arrays;
+package lesson5.homework;
 
 public class task5 {
 

@@ -1,3 +1,5 @@
+package lesson5;
+
 public class ArraysPractice {
     public static void main(String[] args) {
         int[] array = {-10, 0, 110, 555, 1000, -45, 0, 60, 10};

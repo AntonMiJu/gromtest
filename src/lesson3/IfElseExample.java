@@ -1,3 +1,5 @@
+package lesson3;
+
 public class IfElseExample {
     public static void main(String[] args) {
         int test = 1000;

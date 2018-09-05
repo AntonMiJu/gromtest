@@ -1,3 +1,5 @@
+package lesson4;
+
 public class StringsExample {
     public static void main(String[] args) {
         //int a = 10;

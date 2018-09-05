@@ -1,3 +1,5 @@
+package lesson3;
+
 public class FindOdd {
     public static void main(String[] args) {
         int s = 0;
