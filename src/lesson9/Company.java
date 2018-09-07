@@ -5,7 +5,7 @@ public class Company {
     private String countryFounded;
 
     protected String code;
-    public  int someField;
+    public int someField;
 
     public Company(String name, String countryFounded) {
         this.name = name;

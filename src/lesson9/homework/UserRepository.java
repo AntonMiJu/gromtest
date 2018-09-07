@@ -12,8 +12,6 @@ public class UserRepository {
     }
 
     public String[] getUserNames() {
-        if (users == null)
-            return null;
         int length = 0;
         for (User el : users) {
             if (el != null)
@@ -31,8 +29,6 @@ public class UserRepository {
     }
 
     public long[] getUserIds() {
-        if (users == null)
-            return null;
         int length = 0;
         for (User el : users) {
             if (el != null)
@@ -50,12 +46,8 @@ public class UserRepository {
     }
 
     public String getUserNameById(long id) {
-        if (users == null)
-            return null;
         for (User el : users) {
-            if (el == null)
-                continue;
-            if (el.getId() == id)
+            if (el == null && el.getId() == id)
                 return el.getName();
         }
         return null;
@@ -84,8 +76,6 @@ public class UserRepository {
     }
 
     public User getUserBySessionId(String sessionId) {
-        if (users == null)
-            return null;
         int length = 0;
         for (User el : users) {
             if (el != null)
@@ -109,30 +99,31 @@ public class UserRepository {
     }
 
     public User save(User user) {
-        if (users == null)
-            return null;
-        for (User el : users) {
-            if (el == user || users[users.length - 1] != null)
-                return null;
-        }
         int i = 0;
         for (User el : users) {
-            if (el==null)
-                break;
-            i++;
+            if (el == user)
+                return null;
+            if (el != null)
+                i++;
         }
-        users[i] = user;
+        if (users == null || i == users.length)
+            return null;
+        int index = 0;
+        for (User el : users) {
+            if (el == null)
+                break;
+            index++;
+        }
+        users[index] = user;
         return user;
     }
 
-    public User update(User user){
+    public User update(User user) {
         if (users == null || user == null)
             return null;
         int i = 0;
-        for (User el: users){
-            if (el==null)
-                continue;
-            if (el.getId()==user.getId()){
+        for (User el : users) {
+            if (el != null && el.getId() == user.getId()) {
                 users[i] = user;
                 return users[i];
             }
@@ -141,12 +132,10 @@ public class UserRepository {
         return null;
     }
 
-    public void delete(long id){
+    public void delete(long id) {
         int i = 0;
-        for (User el: users){
-            if (el==null)
-                continue;
-            if (el.getId()==id){
+        for (User el : users) {
+            if (el == null && el.getId() == id) {
                 users[i] = null;
             }
             i++;
