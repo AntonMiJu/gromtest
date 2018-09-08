@@ -64,7 +64,7 @@ public class UserRepository {
         return null;
     }
 
-    private User findById(long id) {
+    public User findById(long id) {
         long[] ids = getUserIds();
         int i = 0;
         for (long el : ids) {
@@ -135,7 +135,7 @@ public class UserRepository {
     public void delete(long id) {
         int i = 0;
         for (User el : users) {
-            if (el == null && el.getId() == id) {
+            if (el != null && el.getId() == id) {
                 users[i] = null;
             }
             i++;
