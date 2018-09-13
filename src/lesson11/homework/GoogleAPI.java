@@ -7,6 +7,10 @@ public class GoogleAPI implements API {
         this.rooms = rooms;
     }
 
+    public Room[] getRooms() {
+        return rooms;
+    }
+
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         if (rooms == null)
