@@ -8,39 +8,68 @@ public class Controller {
         this.apis = apis;
     }
 
+//    public Room[] requstRooms(int price, int persons, String city, String hotel) {
+//        BookingComAPI bookingComAPI = new BookingComAPI(rooms);
+//        TripAdvisorAPI tripAdvisorAPI = new TripAdvisorAPI(rooms);
+//        GoogleAPI googleAPI = new GoogleAPI(rooms);
+//        Room[] booking = bookingComAPI.findRooms(price, persons, city, hotel);
+//        Room[] tripAdvisor = tripAdvisorAPI.findRooms(price, persons, city, hotel);
+//        Room[] google = googleAPI.findRooms(price, persons, city, hotel);
+//        Room[] avarege = new Room[booking.length + tripAdvisor.length + google.length];
+//        int index = 0;
+//        for (Room el : booking) {
+//            avarege[index] = el;
+//            index++;
+//        }
+//        for (Room el : tripAdvisor) {
+//            avarege[index] = el;
+//            index++;
+//        }
+//        for (Room el : google) {
+//            avarege[index] = el;
+//            index++;
+//        }
+//        int i = 0;
+//        int k = 0;
+//        for (Room el1 : avarege) {
+//            for (Room el2 : avarege) {
+//                if (el1 != null && el2 != null && el1.getHotelName() == el2.getHotelName() && el1.getCityName() == el2.getCityName() && el1.getPersons() == el2.getPersons() && el1.getPrice() == el2.getPrice()) {
+//                    i++;
+//                }
+//            }
+//        }
+//        Room[] result = new Room[booking.length + tripAdvisor.length + google.length - i - avarege.length];
+//        for (Room el : avarege) {
+//            for (Room el1 : result) {
+//                if (el != null && el1 != null && el.getPrice() == el1.getPrice()&&el.getPersons()==el1.getPersons()&&el.getCityName()==el1.getCityName()&&el.getHotelName()==el1.getHotelName()){
+//                    continue;
+//                } else {
+//                    result[k] = el;
+//                    k++;
+//                }
+//            }
+//        }
+//        return result;
+//    }
+
     public Room[] requstRooms(int price, int persons, String city, String hotel) {
-        BookingComAPI bookingComAPI = new BookingComAPI(rooms);
-        TripAdvisorAPI tripAdvisorAPI = new TripAdvisorAPI(rooms);
-        GoogleAPI googleAPI = new GoogleAPI(rooms);
-        Room[] booking = new Room[bookingComAPI.findRooms(price, persons, city, hotel).length];
-        Room[] tripAdvisor = new Room[tripAdvisorAPI.findRooms(price, persons, city, hotel).length];
-        Room[] google = new Room[googleAPI.findRooms(price, persons, city, hotel).length];
-        booking = bookingComAPI.findRooms(price, persons, city, hotel);
-        tripAdvisor = tripAdvisorAPI.findRooms(price, persons, city, hotel);
-        google = googleAPI.findRooms(price, persons, city, hotel);
-        int i = 0;
+        int lengthArray = 0;
         int index = 0;
-        for (Room elBooking : booking) {
-            for (Room elTrip : tripAdvisor) {
-                for (Room elGoogle : google) {
-                    if (elBooking != null && elTrip != null && elGoogle != null && (elBooking.getPrice() == elGoogle.getPrice() || elBooking.getPrice() == elTrip.getPrice() || elGoogle.getPrice() == elTrip.getPrice()) && (elBooking.getPersons() == elGoogle.getPersons() || elBooking.getPersons() == elTrip.getPersons() || elGoogle.getPersons() == elTrip.getPersons()) && (elBooking.getCityName() == elGoogle.getCityName() || elBooking.getCityName() == elTrip.getCityName() || elGoogle.getCityName() == elTrip.getCityName()) && (elBooking.getHotelName() == elGoogle.getHotelName() || elBooking.getHotelName() == elTrip.getHotelName() || elGoogle.getHotelName() == elTrip.getHotelName())){
-                        i++;
-                    }
+        for (API el : apis) {
+            if (el != null && el.findRooms(price, persons, city, hotel) != null)
+                lengthArray += el.findRooms(price, persons, city, hotel).length;
+        }
+        Room[] result = new Room[lengthArray];
+        for (API el : apis) {
+            if (el != null) {
+                Room[] average = el.findRooms(price, persons, city, hotel);
+                for (Room el1 : average) {
+                    result[index] = el1;
+                    index++;
                 }
             }
         }
-        Room[] result = new Room[i];
-        for (Room elBooking : booking) {
-            for (Room elTrip : tripAdvisor) {
-                for (Room elGoogle : google) {
-                    if (elBooking != null && elTrip != null && elGoogle != null && (elBooking.getPrice() == elGoogle.getPrice() || elBooking.getPrice() == elTrip.getPrice() || elGoogle.getPrice() == elTrip.getPrice()) && (elBooking.getPersons() == elGoogle.getPersons() || elBooking.getPersons() == elTrip.getPersons() || elGoogle.getPersons() == elTrip.getPersons()) && (elBooking.getCityName() == elGoogle.getCityName() || elBooking.getCityName() == elTrip.getCityName() || elGoogle.getCityName() == elTrip.getCityName()) && (elBooking.getHotelName() == elGoogle.getHotelName() || elBooking.getHotelName() == elTrip.getHotelName() || elGoogle.getHotelName() == elTrip.getHotelName())){
-                        result[index] = elBooking;
-                        index++;
-                    }
-                }
-            }
-        }
-        return null;
+        return result;
     }
 
     public Room[] check(API api1, API api2) {
@@ -48,24 +77,18 @@ public class Controller {
             return null;
         Room[] api1Array = new Room[api1.getAll().length];
         Room[] api2Array = new Room[api2.getAll().length];
-        int i = 0;
-        for (Room el1 : api1Array) {
-            for (Room el2 : api2Array) {
-                if (el1 != null && el2 != null && el1.getHotelName() == el2.getHotelName() && el1.getCityName() == el2.getCityName() && el1.getPersons() == el2.getPersons() && el1.getPrice() == el2.getPrice()) {
-                    i++;
-                }
-            }
-        }
-        Room[] result = new Room[i];
+        Room[] average = new Room[api1.getAll().length + api2.getAll().length];
         int index = 0;
-        for (Room el1 : api1Array) {
-            for (Room el2 : api2Array) {
-                if (el1 != null && el2 != null && el1.getHotelName() == el2.getHotelName() && el1.getCityName() == el2.getCityName() && el1.getPersons() == el2.getPersons() && el1.getPrice() == el2.getPrice()) {
-                    result[index] = el1;
-                    index++;
-                }
-            }
+        for (Room el : api1Array) {
+            average[index] = el;
+            index++;
         }
+        for (Room el : api2Array) {
+            average[index] = el;
+            index++;
+        }
+        Room[] result = new Room[0];
+
         return result;
     }
 }
