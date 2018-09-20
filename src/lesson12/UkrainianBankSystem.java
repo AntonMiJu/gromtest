@@ -21,6 +21,8 @@ public class UkrainianBankSystem implements BankSystem {
             return;
         if (!checkFundLimits(toUser, amount, toUser.getBank().getLimitOfFunding()))
             return;
+        if (fromUser.getBank().getCurrency()!=toUser.getBank().getCurrency())
+            return;
 
         fromUser.setBalance(fromUser.getBalance() - amount - amount * fromUser.getBank().getCommission(amount));
         toUser.setBalance(toUser.getBalance() + amount - amount * fromUser.getBank().getCommission(amount));
@@ -29,6 +31,8 @@ public class UkrainianBankSystem implements BankSystem {
     @Override
     public void paySalary(User user) {
         user.getBank().setTotalCapital(user.getBank().getTotalCapital() - user.getSalary());
+        if (!checkFundLimits(user, user.getSalary(), user.getBank().getLimitOfFunding()))
+            return;
         user.setBalance(user.getBalance() + user.getSalary());
     }
 
