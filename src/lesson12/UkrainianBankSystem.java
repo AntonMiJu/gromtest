@@ -28,12 +28,12 @@ public class UkrainianBankSystem implements BankSystem {
 
     @Override
     public void paySalary(User user) {
-        user.getBank().setTotalCapital(user.getBank().getTotalCapital()-user.getSalary());
-        user.setBalance(user.getBalance()+user.getSalary());
+        user.getBank().setTotalCapital(user.getBank().getTotalCapital() - user.getSalary());
+        user.setBalance(user.getBalance() + user.getSalary());
     }
 
     private boolean checkWithdraw(User user, int amount) {
-        return (amount>0 && checkWithdrawLimits(user, amount, user.getBank().getLimitOfWithdrawal()) && checkWithdrawLimits(user, amount, user.getBalance()));
+        return (amount > 0 && checkWithdrawLimits(user, amount, user.getBank().getLimitOfWithdrawal()) && checkWithdrawLimits(user, amount, user.getBalance()));
     }
 
     private boolean checkWithdrawLimits(User user, int amount, double limit) {
@@ -45,7 +45,7 @@ public class UkrainianBankSystem implements BankSystem {
     }
 
     private boolean checkFundLimits(User user, int amount, double limit) {
-        if (amount > limit && amount>0) {
+        if (amount > limit && amount > 0) {
             printFundErrorMsg(amount, user);
             return false;
         }
