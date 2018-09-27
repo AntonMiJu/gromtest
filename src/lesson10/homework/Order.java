@@ -27,8 +27,10 @@ public abstract class Order {
 
     public abstract void calculatePrice();
 
-    public void confirmShipping(){
-        if (dateShipped ==null)
+    public void confirmShipping() {
+        if (dateConfirmed == null)
+            return;
+        if (dateShipped == null)
             dateShipped = new Date();
     }
 
@@ -79,5 +81,20 @@ public abstract class Order {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "itemName='" + itemName + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", dateConfirmed=" + dateConfirmed +
+                ", dateShipped=" + dateShipped +
+                ", shipFromCity='" + shipFromCity + '\'' +
+                ", shipToCity='" + shipToCity + '\'' +
+                ", basePrice=" + basePrice +
+                ", totalPrice=" + totalPrice +
+                ", customerOwned=" + customerOwned +
+                '}';
     }
 }

@@ -26,7 +26,7 @@ public class Order {
     }
 
     public void confirmOrder() {
-        if (isConfirmed==false) {
+        if (isConfirmed == false) {
             isConfirmed = true;
             dateConfirmed = new Date();
         }

@@ -10,7 +10,7 @@ public class TernaryOperator {
         else
             a = 350;*/
 
-        a = b > 200 ? b : b-500;
+        a = b > 200 ? b : b - 500;
         System.out.println(a);
     }
 }

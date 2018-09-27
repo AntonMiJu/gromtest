@@ -23,19 +23,19 @@ public class IfElseExample {
             result = true;
         }
 
-        if (result){
+        if (result) {
             System.out.println("Nice");
         } else
             System.out.println("Not nice");
 
 
-        if (result && test1>100 && test>500){
+        if (result && test1 > 100 && test > 500) {
             System.out.println("!");
         } else {
             System.out.println("?");
         }
 
-        if(!(test1>0)){
+        if (!(test1 > 0)) {
             System.out.println("!!!!!!");
         }
     }

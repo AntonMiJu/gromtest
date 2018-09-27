@@ -8,20 +8,20 @@ public class ArraysPractice {
     }
 
 
-    public static int maxElement(int[] array){
+    public static int maxElement(int[] array) {
         int max = array[0];
 
-        for (int el : array){
-            if (el>max)
+        for (int el : array) {
+            if (el > max)
                 max = el;
         }
         return max;
     }
 
-    public static int nCount(int[] array, int n){
+    public static int nCount(int[] array, int n) {
         int count = 0;
 
-        for (int el : array){
+        for (int el : array) {
             if (el == n)
                 count++;
         }

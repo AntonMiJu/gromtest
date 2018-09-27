@@ -12,7 +12,7 @@ public class Phone {
         this.countryProduced = countryProduced;
     }
 
-    void orderPhone(){
+    void orderPhone() {
         System.out.println("order phone invoked...");
     }
 }

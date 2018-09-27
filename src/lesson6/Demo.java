@@ -2,7 +2,7 @@ package lesson6;
 
 public class Demo {
     public static void main(String[] args) {
-        Car carObject = new Car(10000,2015,"Anton");
+        Car carObject = new Car(10000, 2015, "Anton");
 
         System.out.println(carObject.color);
         System.out.println(carObject.horsePower);

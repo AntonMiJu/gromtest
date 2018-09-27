@@ -1,11 +1,7 @@
-package lesson9.homework;
+package lesson13;
 
 public class UserRepository {
-    private User[] users;
-
-    public UserRepository(User[] users) {
-        this.users = users;
-    }
+    private User[] users = new User[10];
 
     public User[] getUsers() {
         return users;
@@ -54,8 +50,6 @@ public class UserRepository {
     }
 
     public User getUserByName(String name) {
-        if (name == null)
-            return null;
         String[] names = getUserNames();
         int i = 0;
         for (String el : names) {

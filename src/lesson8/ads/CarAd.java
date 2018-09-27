@@ -11,7 +11,7 @@ public class CarAd extends Ad {
         super(id, price);
     }
 
-    void confirmAd(){
+    void confirmAd() {
         //some logic
     }
 }

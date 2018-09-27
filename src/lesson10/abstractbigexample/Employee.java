@@ -14,15 +14,15 @@ public abstract class Employee {
 
     abstract void paySalary();
 
-    void changePosition(String newPosition){
+    void changePosition(String newPosition) {
         saveCurPositionToHistory();
         curPosition = newPosition;
     }
 
-    private void saveCurPositionToHistory(){
+    private void saveCurPositionToHistory() {
         int index = 0;
-        for (String pos: positionsWorked){
-            if (pos==null){
+        for (String pos : positionsWorked) {
+            if (pos == null) {
                 positionsWorked[index] = curPosition;
                 break;
             }
@@ -30,7 +30,7 @@ public abstract class Employee {
         }
     }
 
-    int getBalance(){
+    int getBalance() {
         return bankAccount.getBalance();
     }
 

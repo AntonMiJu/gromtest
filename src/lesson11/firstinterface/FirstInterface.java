@@ -1,7 +1,7 @@
 package lesson11.firstinterface;
 
 public interface FirstInterface {
-     void send();
+    void send();
 
-     String receive();
+    String receive();
 }

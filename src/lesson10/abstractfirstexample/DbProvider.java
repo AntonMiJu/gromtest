@@ -12,6 +12,6 @@ public abstract class DbProvider {
     abstract void disconnectFromDb();
 
     void printDbHost() {
-        System.out.println("Db host is"+dbHost);
+        System.out.println("Db host is" + dbHost);
     }
 }

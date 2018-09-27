@@ -1,6 +1,6 @@
 package lesson8.phones;
 
-public class IPhone7 extends IPhone{
+public class IPhone7 extends IPhone {
 
     boolean isGold;
 

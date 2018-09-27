@@ -12,19 +12,21 @@ public class ElectronicsOrder extends Order {
 
     @Override
     public void validateOrder() {
-        if ((getShipFromCity() == "Киев" || getShipFromCity() == "Одесса" || getShipFromCity() == "Днепр" || getShipFromCity() == "Харьков")&&(getShipToCity() == "Киев" || getShipToCity() == "Одесса" || getShipToCity() == "Днепр" || getShipToCity() == "Харьков")&&(getBasePrice() >= 100)&&(getCustomerOwned().getGender() == "Женский")) {
+        if ((getShipFromCity() == "Киев" || getShipFromCity() == "Одесса" || getShipFromCity() == "Днепр" || getShipFromCity() == "Харьков") && (getShipToCity() == "Киев" || getShipToCity() == "Одесса" || getShipToCity() == "Днепр" || getShipToCity() == "Харьков") && (getBasePrice() >= 100) && (getCustomerOwned().getGender() == "Женский")) {
             setDateConfirmed(new Date());
         }
     }
 
     @Override
     public void calculatePrice() {
-        if (getShipToCity()=="Киев" || getShipToCity()=="Одесса"){
-            setTotalPrice(getBasePrice()+(getBasePrice()*0.1));
-        } else{
-            setTotalPrice(getBasePrice()+(getBasePrice()*0.15));
+        if (getDateConfirmed() == null || getDateShipped() == null)
+            return;
+        if (getShipToCity() == "Киев" || getShipToCity() == "Одесса") {
+            setTotalPrice(getBasePrice() + (getBasePrice() * 0.1));
+        } else {
+            setTotalPrice(getBasePrice() + (getBasePrice() * 0.15));
         }
-        if (getTotalPrice()>=1000)
-            setTotalPrice(getTotalPrice()-getTotalPrice()*0.05);
+        if (getTotalPrice() >= 1000)
+            setTotalPrice(getTotalPrice() - getTotalPrice() * 0.05);
     }
 }

@@ -21,11 +21,11 @@ public class UkrainianBankSystem implements BankSystem {
             return;
         if (!checkFundLimits(toUser, amount, toUser.getBank().getLimitOfFunding()))
             return;
-        if (fromUser.getBank().getCurrency()!=toUser.getBank().getCurrency())
+        if (fromUser.getBank().getCurrency() != toUser.getBank().getCurrency())
             return;
 
         fromUser.setBalance(fromUser.getBalance() - amount - amount * fromUser.getBank().getCommission(amount));
-        toUser.setBalance(toUser.getBalance() + amount - amount * fromUser.getBank().getCommission(amount));
+        toUser.setBalance(toUser.getBalance() + amount);
     }
 
     @Override

@@ -5,12 +5,12 @@ public class IPhone extends Phone {
 
     public IPhone(int price, double weight, String countryProduced, boolean fingerPrint) {
 
-        super(price,weight,countryProduced);
+        super(price, weight, countryProduced);
         System.out.println("IPhone constructor was invoked...");
         this.fingerPrint = fingerPrint;
     }
 
-    void deleteIPhoneFromDb(){
+    void deleteIPhoneFromDb() {
         System.out.println("deleteIPhoneFromDb invoked...");
     }
 }
