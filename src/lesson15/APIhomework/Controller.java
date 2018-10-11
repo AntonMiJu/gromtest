@@ -1,4 +1,4 @@
-package lesson11.homework;
+package lesson15.APIhomework;
 
 public class  Controller {
     private API[] apis;
@@ -80,7 +80,7 @@ public class  Controller {
         int i = 0;
         for (Room el : api1Array) {
             for (Room el1 : api2Array) {
-                if (el != null && el1 != null && el.getHotelName() == el1.getHotelName() && el.getCityName() == el1.getCityName() && el.getPersons() == el1.getPersons() && el.getPrice() == el1.getPrice()) {
+                if (el != null && el1 != null && el.equals(el1)) {
                     i++;
                 }
             }
@@ -89,7 +89,7 @@ public class  Controller {
         Room[] result = new Room[i];
         for (Room el : api1Array) {
             for (Room el1 : api2Array) {
-                if (el != null && el1 != null && el.getHotelName() == el1.getHotelName() && el.getCityName() == el1.getCityName() && el.getPersons() == el1.getPersons() && el.getPrice() == el1.getPrice()) {
+                if (el != null && el1 != null && el.equals(el1)) {
                     result[index] = el;
                     index++;
                 }
