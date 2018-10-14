@@ -12,7 +12,7 @@ public class Solution {
         String[] array = input.split(" ");
         int counter = 0;
         for (String el:array){
-            if (el==null || el=="")
+            if (el==null || el.isEmpty())
                 continue;
             int i = 0;
             char[] mid = el.toCharArray();
