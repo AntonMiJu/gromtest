@@ -11,9 +11,10 @@ public class Solution {
             return 0;
         String[] array = input.split(" ");
         int counter = 0;
-        int i = 0;
         for (String el:array){
-            i = 0;
+            if (el==null)
+                continue;
+            int i = 0;
             char[] mid = el.toCharArray();
             for (char el1:mid){
                 if (Character.isLetter(el1))
