@@ -10,6 +10,7 @@ public class Solution2 {
         int max = 0;
         int maxIndex = 0;
         int k = 0;
+        int counter = 0;
         String[] array = input.split(" ");
         String[] result = new String[array.length];
         for (int i = 0; i < array.length; i++) {
@@ -18,9 +19,9 @@ public class Solution2 {
             char[] mid = array[i].toCharArray();
             for (char el1 : mid) {
                 if (Character.isLetter(el1))
-                    i++;
+                    counter++;
             }
-            if (i == mid.length) {
+            if (counter == mid.length) {
                 result[k] = array[i];
                 k++;
             }
@@ -40,6 +41,7 @@ public class Solution2 {
         int min = Integer.MAX_VALUE;
         int minIndex = 0;
         int k = 0;
+        int counter = 0;
         String[] array = input.split(" ");
         String[] result = new String[array.length];
         for (int i = 0; i < array.length; i++) {
@@ -48,9 +50,9 @@ public class Solution2 {
             char[] mid = array[i].toCharArray();
             for (char el1 : mid) {
                 if (Character.isLetter(el1))
-                    i++;
+                    counter++;
             }
-            if (i == mid.length) {
+            if (counter == mid.length) {
                 result[k] = array[i];
                 k++;
             }
