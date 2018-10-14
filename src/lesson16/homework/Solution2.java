@@ -10,13 +10,13 @@ public class Solution2 {
         int max = 0;
         int maxIndex = 0;
         int k = 0;
-        int counter = 0;
         String[] array = input.split(" ");
         String[] result = new String[array.length];
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null || array[i].isEmpty())
                 continue;
             char[] mid = array[i].toCharArray();
+            int counter = 0;
             for (char el1 : mid) {
                 if (Character.isLetter(el1))
                     counter++;
@@ -41,13 +41,13 @@ public class Solution2 {
         int min = Integer.MAX_VALUE;
         int minIndex = 0;
         int k = 0;
-        int counter = 0;
         String[] array = input.split(" ");
         String[] result = new String[array.length];
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null || array[i].isEmpty())
                 continue;
             char[] mid = array[i].toCharArray();
+            int counter = 0;
             for (char el1 : mid) {
                 if (Character.isLetter(el1))
                     counter++;
