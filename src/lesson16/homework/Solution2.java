@@ -2,11 +2,13 @@ package lesson16.homework;
 
 public class Solution2 {
     public static void main(String[] args) {
-        System.out.println(maxWord("a1sf anton mi cosi dfsdg!s"));
+        System.out.println(maxWord(null));
         System.out.println(minWord("a1sf anton mi cosi dfsdg!s"));
     }
 
     private static String maxWord(String input) {
+        if (input==null || input=="")
+            return null;
         int max = Integer.MIN_VALUE;
         int maxIndex = 0;
         String[] result = validate(input);
@@ -22,6 +24,8 @@ public class Solution2 {
     }
 
     private static String minWord(String input) {
+        if (input==null || input=="")
+            return null;
         int min = Integer.MAX_VALUE;
         int minIndex = 0;
         String[] result = validate(input);
