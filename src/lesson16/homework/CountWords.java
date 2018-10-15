@@ -2,8 +2,8 @@ package lesson16.homework;
 
 public class CountWords {
     public static void main(String[] args) {
-        System.out.println(mostCountedWord("anyon mi f434 f434 mi"));
-        System.out.println(mostCountedWord(null));
+        System.out.println(mostCountedWord("anyon f434 f434 mi"));
+        System.out.println(mostCountedWord("           "));
     }
 
     private static String mostCountedWord(String input){
@@ -27,7 +27,7 @@ public class CountWords {
             }
         }
         if (result.isEmpty())
-            return null;
+            return array[0];
         return result;
     }
 
