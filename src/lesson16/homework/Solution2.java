@@ -3,7 +3,7 @@ package lesson16.homework;
 public class Solution2 {
     public static void main(String[] args) {
         System.out.println(maxWord(null));
-        System.out.println(minWord("a1sf anton mi cosi dfsdg!s"));
+        System.out.println(minWord("     "));
     }
 
     private static String maxWord(String input) {
@@ -42,8 +42,21 @@ public class Solution2 {
 
     private static String[] validate(String input){
         int k = 0;
-        String[] array = input.split(" ");
-        String[] result = new String[array.length];
+        String[] array = input.trim().split(" ");
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == null || array[i].isEmpty())
+                continue;
+            char[] mid = array[i].toCharArray();
+            int counter = 0;
+            for (char el1 : mid) {
+                if (Character.isLetter(el1))
+                    counter++;
+            }
+            if (counter == mid.length) {
+                k++;
+            }
+        }
+        String[] result = new String[k];
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null || array[i].isEmpty())
                 continue;
