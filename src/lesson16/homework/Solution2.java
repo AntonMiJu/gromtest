@@ -3,7 +3,7 @@ package lesson16.homework;
 public class Solution2 {
     public static void main(String[] args) {
         System.out.println(maxWord(null));
-        System.out.println(minWord("     "));
+        System.out.println(minWord("rjhfdkfd sdfsd e3e33e3 dsf1 wdf4 sdfsdf"));
     }
 
     private static String maxWord(String input) {
@@ -56,6 +56,7 @@ public class Solution2 {
                 k++;
             }
         }
+        k = 0;
         String[] result = new String[k];
         for (int i = 0; i < array.length; i++) {
             if (array[i] == null || array[i].isEmpty())
