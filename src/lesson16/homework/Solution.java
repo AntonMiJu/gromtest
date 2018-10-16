@@ -22,6 +22,7 @@ public class Solution {
         System.out.println(mostCountedWord(null));
         System.out.println(mostCountedWord("asdasd mi s432ed s432ed mi"));
         System.out.println(mostCountedWord("     asdasd      mi s432ed s432ed mi    asdasd asdasd"));
+        System.out.println(mostCountedWord("rrr rrr kkk kkk rrr"));
     }
 
     public static int countWords(String input) {
@@ -79,8 +80,8 @@ public class Solution {
         String result = null;
         int max = 1;
         for (String el : array){
-            int counter = 1;
-            for (int j = 1; j<array.length;j++){
+            int counter = 0;
+            for (int j = 0; j<array.length;j++){
                 if (!(el.equals("")) && el.equals(array[j]))
                     counter++;
             }
@@ -89,7 +90,7 @@ public class Solution {
                 result = el;
             }
         }
-        if (max == 1)
+        if (result.isEmpty())
             return null;
         return result;
     }
