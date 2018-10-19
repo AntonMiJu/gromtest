@@ -85,13 +85,11 @@ public class Solution {
                 if (!(el.equals("")) && el.equals(array[j]))
                     counter++;
             }
-            if (counter>max){
+            if (counter>=max){
                 max = counter;
                 result = el;
             }
         }
-        if (result.isEmpty())
-            return null;
         return result;
     }
 

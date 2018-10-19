@@ -6,32 +6,36 @@ public class Validation {
         System.out.println(validate(null));
         System.out.println(validate("     "));
         System.out.println(validate("http://sdfsdfs.com"));
-        System.out.println(validate("https://sdfs112dfs.org"));
-        System.out.println(validate("https://sdfsd&**fs.org"));
+        System.out.println(validate("https://www.sdfs112dfs.net"));
+        System.out.println(validate("http://www.sdfsd&**fs.org"));
 
     }
 
-    private static boolean validate(String input){
-        if (input == "" || input == null)
+    private static boolean validate(String address){
+        String[] array = address.split("//");
+        if (array.length!=2 || !array[0].equals("http:") && !array[0].equals("https:"))
             return false;
-        String[] http = input.split("//");
-        if (http.length!=2)
-            return false;
-        if (!(http[0].equals("http:") || http[0].equals("https:")))
-            return false;
-        String[] com = http[1].split(".");
-        if (com.length!=2)
-            return false;
-        if (!(com[1].equals("com") || com[1].equals("org") || com[1].equals("net")))
-            return false;
-        int i = 0;
-        char[] array = com[0].toCharArray();
-        for (char el:array){
-            if (Character.isLetterOrDigit(el))
-                i++;
+        String[] com = array[1].split("\\.");
+        if (com.length==2 && (com[1].equals("com") || com[1].equals("org") || com[1].equals("net"))){
+            int i = 0;
+            char[] mid = com[0].toCharArray();
+            for (char el: mid){
+                if (Character.isLetterOrDigit(el))
+                    i++;
+            }
+            if (i==mid.length)
+                return true;
         }
-        if (i!=array.length)
-            return false;
-        return true;
+        if (com.length==3 && (com[2].equals("com") || com[2].equals("org") || com[2].equals("net")) && com[0].equals("www")){
+            int i = 0;
+            char[] mid = com[1].toCharArray();
+            for (char el: mid){
+                if (Character.isLetterOrDigit(el))
+                    i++;
+            }
+            if (i==mid.length)
+                return true;
+        }
+        return false;
     }
 }
