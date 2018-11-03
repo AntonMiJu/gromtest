@@ -1,4 +1,4 @@
-package lesson17.exercise2;
+package lesson18.exercise2;
 
 public class Converter {
     public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class Converter {
         int res;
         try {
             return Integer.parseInt(input);
-        } catch (Exception e){
+        } catch (NumberFormatException e){
             System.out.println(input + " can not be converted to int");
             return 0;
         }
