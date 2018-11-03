@@ -39,7 +39,7 @@ public class Controller {
 //           System.out.println("Second BD "+storageTo.getId()+" is smaller than first "+storageFrom.getId());
 //       }
 
-        if (storageFrom.getFiles().length != storageTo.getFiles().length) {
+        if (storageFrom.getFiles().length > storageTo.getFiles().length) {
             throw new Exception("Second BD " + storageTo.getId() + " is smaller than first " + storageFrom.getId());
         }
         File[] storageFiles = storageFrom.getFiles();

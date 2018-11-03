@@ -2,11 +2,20 @@ package lesson19.homework;
 
 public class Demo {
     public static void main(String[] args) {
-        File file1 = new File(1,"123","txt", 128);
-        File file2 = new File(2,"sadasd","jpg",256);
-        File file3 = new File(3,"saffght","doc",512);
-        File file4 = new File(4,"d33fvx","xlsx",1024);
-        File file5 = new File(5,"safdafadfafafaasf","ppt",2048);
+        File file1 = null;
+        File file2 = null;
+        File file3 = null;
+        File file4 = null;
+        File file5 = null;
+        try {
+            file1 = new File(1,"123","txt", 128);
+            file2 = new File(2,"sadasd","jpg",256);
+            file3 = new File(3,"saffght","doc",512);
+            file4 = new File(4,"d33fvx","xlsx",1024);
+            file5 = new File(5,"safdafadfafafaasf","ppt",2048);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
         File[] arrayPutWithoutProblem = {file1,null,file2,file4};
         File[] arrayPutFull = {file1,file5,file2,file4};
