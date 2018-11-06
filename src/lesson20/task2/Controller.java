@@ -4,25 +4,18 @@ public class Controller {
     private TransactionDAO transactionDAO = new TransactionDAO();
 
     Transaction save(Transaction transaction) throws  Exception{
-
         return transactionDAO.save(transaction);
     }
 
-
-
-
     Transaction[] transactionList(){
-
-        return null;
+        return transactionDAO.transactionList();
     }
 
     Transaction[] transactionList(String city){
-
-        return null;
+        return transactionDAO.transactionList(city);
     }
 
     Transaction[] transactionList(int amount){
-
-        return null;
+        return transactionDAO.transactionList(amount);
     }
 }
