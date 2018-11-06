@@ -1,7 +1,7 @@
 package lesson20.task1;
 
 import lesson20.task1.exception.BadRequestException;
-import lesson20.task1.exception.InternalServerException;
+import lesson20.task1.exception.InternalServelException;
 import lesson20.task1.exception.UserNotFoundException;
 
 public class UserRepository {
@@ -42,7 +42,7 @@ public class UserRepository {
             }
             index++;
         }
-        throw new InternalServerException("Not enough space to save user with id: " + user.getId());
+        throw new InternalServelException("Not enough space to save user with id: " + user.getId());
     }
 
     public User update(User user) throws Exception{
@@ -57,7 +57,7 @@ public class UserRepository {
             }
             index++;
         }
-        throw new InternalServerException("Unexpected error");
+        throw new InternalServelException("Unexpected error");
     }
 
     public void delete(long id) throws Exception{
