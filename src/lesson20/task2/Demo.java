@@ -18,10 +18,16 @@ public class Demo {
 //            System.out.println(e.getMessage());
 //        }
         try {
+
+            transactionDAO.validate(transaction3);
             System.out.println(transactionDAO.save(transaction3));
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
-        System.out.println(Arrays.toString(transactionDAO.transactionList()));
+        try {
+            System.out.println(Arrays.toString(transactionDAO.transactionList()));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }

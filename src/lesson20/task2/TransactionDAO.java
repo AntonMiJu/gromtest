@@ -24,7 +24,7 @@ public class TransactionDAO {
         return transactions[index];
     }
 
-    private void validate(Transaction transaction) throws Exception {
+    public void validate(Transaction transaction) throws Exception {
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceed " + transaction.getId() + ". can't be saved");
 
@@ -56,7 +56,7 @@ public class TransactionDAO {
 
         count = 0;
         for (Transaction tr : transactions) {
-            if (tr.equals(null))
+            if (tr == null)
                 count++;
         }
 
@@ -65,11 +65,22 @@ public class TransactionDAO {
     }
 
 
-    Transaction[] transactionList() {
-        return transactions;
+    Transaction[] transactionList() throws InternalServerException{
+        int count = 0;
+        for (Transaction tr : transactions) {
+            if (tr != null)
+                count++;
+        }
+        validateByTransactionList(count);
+        int index = 0;
+        Transaction[] result = new Transaction[count];
+        for (Transaction tr : transactions) {
+            result[index] = tr;
+        }
+        return result;
     }
 
-    Transaction[] transactionList(String city) {
+    Transaction[] transactionList(String city) throws InternalServerException{
         int count = 0;
         for (Transaction tr : transactions) {
             for (String el : utils.getCities()) {
@@ -77,6 +88,7 @@ public class TransactionDAO {
                     count++;
             }
         }
+        validateByTransactionList(count);
         int index = 0;
         Transaction[] result = new Transaction[count];
         for (Transaction tr : transactions) {
@@ -90,12 +102,13 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) {
+    Transaction[] transactionList(int amount) throws InternalServerException{
         int count = 0;
         for (Transaction tr : transactions) {
             if (tr.getAmount() == amount)
                 count++;
         }
+        validateByTransactionList(count);
         int index = 0;
         Transaction[] result = new Transaction[count];
         for (Transaction tr : transactions) {
@@ -141,5 +154,10 @@ public class TransactionDAO {
             }
         }
         return result;
+    }
+
+    private void validateByTransactionList(int count) throws InternalServerException{
+        if (count == 0)
+            throw new InternalServerException("Haven't transactions");
     }
 }
