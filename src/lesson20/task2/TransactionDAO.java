@@ -28,8 +28,8 @@ public class TransactionDAO {
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceed " + transaction.getId() + ". can't be saved");
 
-        int sum = 0;
-        int count = 0;
+        int sum = transaction.getAmount();
+        int count = 1;
         for (Transaction tr : getTransactionsPerDay(transaction.getDateCreated())) {
             sum += tr.getAmount();
             count++;
@@ -41,12 +41,7 @@ public class TransactionDAO {
         if (count > utils.getLimitTransactionsPerDayCount())
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + ". can't be saved");
 
-        count = 0;
-        for (String el : utils.getCities()) {
-            if (transaction.getCity().equals(el))
-                count++;
-        }
-        if (count!=1)
+        if (!validateByCity(transaction))
             throw new BadRequestException("Bad city request for transaction with id: "+transaction.getId());
 
         for (Transaction tr : transactions){
@@ -75,7 +70,10 @@ public class TransactionDAO {
         int index = 0;
         Transaction[] result = new Transaction[count];
         for (Transaction tr : transactions) {
-            result[index] = tr;
+            if (tr!=null){
+                result[index] = tr;
+                index++;
+            }
         }
         return result;
     }
@@ -159,5 +157,13 @@ public class TransactionDAO {
     private void validateByTransactionList(int count) throws InternalServerException{
         if (count == 0)
             throw new InternalServerException("Haven't transactions");
+    }
+
+    private boolean validateByCity(Transaction transaction){
+        for (String el : utils.getCities()){
+            if (transaction.getCity().equals(el))
+                return true;
+        }
+        return false;
     }
 }
