@@ -5,19 +5,19 @@ import lesson20.task2.exception.InternalServerException;
 public class Controller {
     private TransactionDAO transactionDAO = new TransactionDAO();
 
-    Transaction save(Transaction transaction) throws  Exception{
+    Transaction save(Transaction transaction) throws Exception{
         return transactionDAO.save(transaction);
     }
 
-    Transaction[] transactionList() throws InternalServerException {
+    Transaction[] transactionList() {
         return transactionDAO.transactionList();
     }
 
-    Transaction[] transactionList(String city) throws InternalServerException {
+    Transaction[] transactionList(String city) {
         return transactionDAO.transactionList(city);
     }
 
-    Transaction[] transactionList(int amount) throws InternalServerException {
+    Transaction[] transactionList(int amount) {
         return transactionDAO.transactionList(amount);
     }
 }

@@ -42,11 +42,11 @@ public class TransactionDAO {
             throw new LimitExceeded("Transaction limit per day count exceed " + transaction.getId() + ". can't be saved");
 
         if (!validateByCity(transaction))
-            throw new BadRequestException("Bad city request for transaction with id: "+transaction.getId());
+            throw new BadRequestException("Bad city request for transaction with id: " + transaction.getId());
 
-        for (Transaction tr : transactions){
+        for (Transaction tr : transactions) {
             if (transaction.equals(tr))
-                throw new BadRequestException("Transaction with id: "+ transaction.getId()+" already in list");
+                throw new BadRequestException("Transaction with id: " + transaction.getId() + " already in list");
         }
 
         count = 0;
@@ -60,17 +60,17 @@ public class TransactionDAO {
     }
 
 
-    Transaction[] transactionList() throws InternalServerException{
+    Transaction[] transactionList() {
         int count = 0;
         for (Transaction tr : transactions) {
             if (tr != null)
                 count++;
         }
-        validateByTransactionList(count);
+        //validateByTransactionList(count);
         int index = 0;
         Transaction[] result = new Transaction[count];
         for (Transaction tr : transactions) {
-            if (tr!=null){
+            if (tr != null) {
                 result[index] = tr;
                 index++;
             }
@@ -78,7 +78,7 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(String city) throws InternalServerException{
+    Transaction[] transactionList(String city) {
         int count = 0;
         for (Transaction tr : transactions) {
             for (String el : utils.getCities()) {
@@ -86,7 +86,7 @@ public class TransactionDAO {
                     count++;
             }
         }
-        validateByTransactionList(count);
+        //validateByTransactionList(count);
         int index = 0;
         Transaction[] result = new Transaction[count];
         for (Transaction tr : transactions) {
@@ -100,13 +100,13 @@ public class TransactionDAO {
         return result;
     }
 
-    Transaction[] transactionList(int amount) throws InternalServerException{
+    Transaction[] transactionList(int amount) {
         int count = 0;
         for (Transaction tr : transactions) {
             if (tr.getAmount() == amount)
                 count++;
         }
-        validateByTransactionList(count);
+        //validateByTransactionList(count);
         int index = 0;
         Transaction[] result = new Transaction[count];
         for (Transaction tr : transactions) {
@@ -154,13 +154,13 @@ public class TransactionDAO {
         return result;
     }
 
-    private void validateByTransactionList(int count) throws InternalServerException{
+    private void validateByTransactionList(int count) throws InternalServerException {
         if (count == 0)
             throw new InternalServerException("Haven't transactions");
     }
 
-    private boolean validateByCity(Transaction transaction){
-        for (String el : utils.getCities()){
+    private boolean validateByCity(Transaction transaction) {
+        for (String el : utils.getCities()) {
             if (transaction.getCity().equals(el))
                 return true;
         }
