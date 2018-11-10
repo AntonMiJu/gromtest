@@ -80,19 +80,15 @@ public class TransactionDAO {
     Transaction[] transactionList(String city) {
         int count = 0;
         for (Transaction tr : transactions) {
-            for (String el : utils.getCities()) {
-                if (tr.getCity().equals(el))
-                    count++;
-            }
+            if (tr.getCity().equals(city))
+                count++;
         }
         int index = 0;
         Transaction[] result = new Transaction[count];
         for (Transaction tr : transactions) {
-            for (String el : utils.getCities()) {
-                if (tr.getCity().equals(el)) {
-                    result[index] = tr;
-                    index++;
-                }
+            if (tr.getCity().equals(city)) {
+                result[index] = tr;
+                index++;
             }
         }
         return result;
@@ -148,7 +144,7 @@ public class TransactionDAO {
                 }
             }
         }
-        return result; 
+        return result;
     }
 
 //    private void validateByTransactionList(int count) throws InternalServerException {
