@@ -30,9 +30,9 @@ public class StringCompare {
         System.out.println(Arrays.toString(str.getBytes()));
 
         System.out.println(new String(str.getBytes()));
-//        System.out.println(test.getBytes());
-//        System.out.println(test.equals("eeee"));
+//        Sys.out.println(test.getBytes());
+//        Sys.out.println(test.equals("eeee"));
 //
-//        System.out.println(test.intern());
+//        Sys.out.println(test.intern());
     }
 }

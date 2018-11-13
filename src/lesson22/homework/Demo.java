@@ -18,9 +18,9 @@ public class Demo {
 //        try {
 //
 //            transactionDAO.validate(transaction3);
-//            System.out.println(transactionDAO.save(transaction3));
+//            Sys.out.println(transactionDAO.save(transaction3));
 //        } catch (Exception e){
-//            System.out.println(e.getMessage());
+//            Sys.out.println(e.getMessage());
 //        }
         try {
             System.out.println(Arrays.toString(TransactionDAO.transactionList()));

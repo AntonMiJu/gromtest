@@ -13,9 +13,9 @@ public class Demo {
         Controller controller = new Controller();
         TransactionDAO transactionDAO = new TransactionDAO();
 //        try {
-//            System.out.println(controller.save(transaction1));
+//            Sys.out.println(controller.save(transaction1));
 //        } catch (Exception e){
-//            System.out.println(e.getMessage());
+//            Sys.out.println(e.getMessage());
 //        }
         try {
 

@@ -11,7 +11,7 @@ public class CompareOperatorExample {
         boolean res = a != b;
         System.out.println(res);
 
-        //System.out.println(a < b);
+        //Sys.out.println(a < b);
 
 
     }

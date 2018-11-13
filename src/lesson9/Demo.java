@@ -9,6 +9,6 @@ public class Demo {
         System.out.println(company.getName());
 
         Checker checker = new Checker();
-        //System.out.println(checker.companyNamesValidatedCount);
+        //Sys.out.println(checker.companyNamesValidatedCount);
     }
 }
