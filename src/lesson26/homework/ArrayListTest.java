@@ -26,10 +26,11 @@ public class ArrayListTest {
         arrayList.set(2,order2);//5
         arrayList.add(order5);
         arrayList.add(order2);
-        arrayList.toArray();//6
+        Object[] objects = new Order[arrayList.size()];
+        objects = arrayList.toArray();//6
         arrayList.contains(order1);//7
         ArrayList<Order> arrayList1 = new ArrayList<>();
-        arrayList.subList(1,3);//8
+        arrayList1.addAll(arrayList.subList(1,3));//8
         arrayList1.addAll(arrayList);//9
         arrayList.clear();//10
 
