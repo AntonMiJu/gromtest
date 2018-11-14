@@ -18,7 +18,7 @@ public class Demo {
         User user1 = new User("Anton",24,"...");
 
         userGeneralDAO.save(user1);
-        
+
         userGeneralDAO.save(user1);
         userGeneralDAO.save(null);
         System.out.println(Arrays.deepToString(userGeneralDAO.getAll()));
