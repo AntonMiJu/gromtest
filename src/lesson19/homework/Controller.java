@@ -31,7 +31,7 @@ public class Controller {
                 arrayToLength++;
         }
         if (storageFrom.getFiles().length > arrayToLength)
-            throw new Exception("StorageTo "+storageTo.getId()+" is smaller");
+            throw new Exception("StorageTo "+storageTo.getId()+" is smaller than StorageFrom: "+ storageFrom.getId());
         for (File el : storageFrom.getFiles()) {
             validate(storageTo, el);
         }
@@ -75,7 +75,7 @@ public class Controller {
 
     private static void validate(Storage storage, File file) throws Exception {
         if (storage == null)
-            throw new Exception("Null storage"+storage.getId());
+            throw new Exception("Null storage" + storage.getId()+ " cant put file: "+ file.getId());
         File[] storageFiles = storage.getFiles();
         if (fileInArray(storageFiles, file))
             throw new Exception("File " + file.getId() + " is already in BD " + storage.getId());
@@ -88,7 +88,7 @@ public class Controller {
             throw new Exception("BD " + storage.getId() + " can not put file " + file.getId());
 
         if (!fileCorrectFormat(storage.getFormatsSupported(), file))
-            throw new Exception("Not that format in file: " + file.getId());
+            throw new Exception("Not that format in file: " + file.getId()+ " for storage : "+ storage.getId());
 
         int sizeSum = 0;
         for (File el : storage.getFiles()) {
@@ -96,6 +96,6 @@ public class Controller {
                 sizeSum += el.getSize();
         }
         if (sizeSum > storage.getStorageSize())
-            throw new Exception("Haven't enough memory for save file: " + file.getId());
+            throw new Exception("Haven't enough memory in storage: "+storage.getId()+" for save file: " + file.getId());
     }
 }
