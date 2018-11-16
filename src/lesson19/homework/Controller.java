@@ -2,42 +2,41 @@ package lesson19.homework;
 
 public class Controller {
     public static void put(Storage storage, File file) throws Exception {
-        File[] storageFiles = storage.getFiles();
         validate(storage, file);
-        for (int i = 0; i < storageFiles.length; i++) {
-            if (storageFiles[i] == null) {
-                storage.addFile(i, file);
+        int index = 0;
+        for (File el : storage.getFiles()) {
+            if (el == null) {
+                storage.addFile(index, file);
                 break;
             }
+            index++;
         }
     }
 
     public static void delete(Storage storage, File file) throws Exception {
-        File[] storageFiles = storage.getFiles();
-        if (!fileInArray(storageFiles, file))
+        if (!fileInArray(storage.getFiles(), file))
             throw new Exception("File " + file.getId() + " is not in BD " + storage.getId());
-        for (int i = 0; i < storageFiles.length; i++) {
-            if (storageFiles[i].equals(file))
-                storageFiles[i] = null;
+        int index = 0;
+        for (File el : storage.getFiles()) {
+            if (el!= null && el.equals(file))
+                storage.addFile(index,null);
+            index++;
         }
-        storage.setFiles(storageFiles);
     }
 
     public static void transferAll(Storage storageFrom, Storage storageTo) throws Exception {
-        File[] storageF = storageFrom.getFiles();
-        File[] storageT = storageTo.getFiles();
         int arrayToLength = 0;
-        for (File el : storageT) {
+        for (File el : storageTo.getFiles()) {
             if (el == null)
                 arrayToLength++;
         }
-        if (storageF.length > arrayToLength)
+        if (storageFrom.getFiles().length > arrayToLength)
             throw new Exception("StorageTo  is smaller");
-        for (File el : storageF) {
+        for (File el : storageFrom.getFiles()) {
             validate(storageTo, el);
         }
-        for (int i = 0; i < storageF.length; i++) {
-            put(storageTo, storageF[i]);
+        for (File el : storageFrom.getFiles()) {
+            put(storageTo, el);
         }
     }
 
