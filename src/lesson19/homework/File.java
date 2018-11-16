@@ -22,9 +22,9 @@ public class File {
         return size;
     }
 
-    public File(long id, String name, String format, long size) throws Exception{
+    public File(long id, String name, String format, long size) throws Exception {
         this.id = id;
-        if (name.length()>10){
+        if (name.length() > 10) {
             throw new Exception("Name length > 10");
         } else {
             this.name = name;

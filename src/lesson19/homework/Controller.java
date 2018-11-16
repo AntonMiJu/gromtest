@@ -3,18 +3,13 @@ package lesson19.homework;
 public class Controller {
     public static void put(Storage storage, File file) throws Exception {
         File[] storageFiles = storage.getFiles();
-        if (fileInArray(storageFiles, file))
-            throw new Exception("File " + file.getId() + " is already in BD " + storage.getId());
-        int j = 0;
+        validate(storage, file);
         for (int i = 0; i < storageFiles.length; i++) {
             if (storageFiles[i] == null) {
                 storage.addFile(i,file);
                 break;
-            } else
-                j++;
+            }
         }
-        if (!fileInArray(storageFiles, file) || j == storageFiles.length)
-            throw new Exception("BD " + storage.getId() + " can not put file " + file.getId());
     }
 
     public static void delete(Storage storage, File file) throws Exception {
@@ -64,5 +59,18 @@ public class Controller {
                 return true;
         }
         return false;
+    }
+
+    private static void validate(Storage storage, File file) throws Exception{
+        File[] storageFiles = storage.getFiles();
+        if (fileInArray(storageFiles, file))
+            throw new Exception("File " + file.getId() + " is already in BD " + storage.getId());
+        int index = 0;
+        for (int i = 0; i < storageFiles.length; i++) {
+            if (storageFiles[i] != null)
+                index++;
+        }
+        if (!fileInArray(storageFiles, file) || index == storageFiles.length)
+            throw new Exception("BD " + storage.getId() + " can not put file " + file.getId());
     }
 }
