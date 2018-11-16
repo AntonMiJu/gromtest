@@ -18,8 +18,8 @@ public class Controller {
             throw new Exception("File " + file.getId() + " is not in BD " + storage.getId());
         int index = 0;
         for (File el : storage.getFiles()) {
-            if (el!= null && el.equals(file))
-                storage.addFile(index,null);
+            if (el != null && el.equals(file))
+                storage.addFile(index, null);
             index++;
         }
     }
@@ -31,7 +31,7 @@ public class Controller {
                 arrayToLength++;
         }
         if (storageFrom.getFiles().length > arrayToLength)
-            throw new Exception("StorageTo  is smaller");
+            throw new Exception("StorageTo "+storageTo.getId()+" is smaller");
         for (File el : storageFrom.getFiles()) {
             validate(storageTo, el);
         }
@@ -74,8 +74,8 @@ public class Controller {
     }
 
     private static void validate(Storage storage, File file) throws Exception {
-        if (storage == null )
-            throw new Exception("Null storage");
+        if (storage == null)
+            throw new Exception("Null storage"+storage.getId());
         File[] storageFiles = storage.getFiles();
         if (fileInArray(storageFiles, file))
             throw new Exception("File " + file.getId() + " is already in BD " + storage.getId());
@@ -88,7 +88,7 @@ public class Controller {
             throw new Exception("BD " + storage.getId() + " can not put file " + file.getId());
 
         if (!fileCorrectFormat(storage.getFormatsSupported(), file))
-            throw new Exception("not that format");
+            throw new Exception("Not that format in file: " + file.getId());
 
         int sizeSum = 0;
         for (File el : storage.getFiles()) {
@@ -96,6 +96,6 @@ public class Controller {
                 sizeSum += el.getSize();
         }
         if (sizeSum > storage.getStorageSize())
-            throw new Exception("Haven't enough memory for save file");
+            throw new Exception("Haven't enough memory for save file: " + file.getId());
     }
 }
