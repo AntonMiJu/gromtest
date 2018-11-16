@@ -85,7 +85,7 @@ public class Controller {
             if (storageFile != null)
                 index++;
         }
-        if (!fileInArray(storageFiles, file) || index == storageFiles.length)
+        if (index == storageFiles.length)
             throw new Exception("BD " + storage.getId() + " can not put file " + file.getId());
 
         if (!fileCorrectFormat(storage.getFormatsSupported(), file))
