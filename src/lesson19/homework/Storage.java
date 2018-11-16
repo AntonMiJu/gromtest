@@ -10,19 +10,8 @@ public class Storage {
     public Storage(long id, File[] files, String[] formatsSupported, String storageCountry, long storageSize) throws Exception {
         this.id = id;
         this.files = files;
-//        for (File el : files) {
-//            if (!fileInArray(formatsSupported, el))
-//                throw new Exception("not that format");
-//        }
         this.formatsSupported = formatsSupported;
         this.storageCountry = storageCountry;
-        int i = 0;
-//        for (File el : files) {
-//            if (el != null)
-//                i += el.getSize();
-//        }
-//        if (i > storageSize)
-//            throw new Exception("size is too large");
         this.storageSize = storageSize;
     }
 
@@ -42,23 +31,11 @@ public class Storage {
         files[i] = file;
     }
 
-    private static boolean fileInArray(String[] formats, File file) {
-        if (formats == null)
-            return false;
-        for (int i = 0; i < formats.length; i++) {
-            if (formats[i] != null && formats[i].equals(file.getFormat()))
-                return true;
-        }
-        return false;
+    public String[] getFormatsSupported() {
+        return formatsSupported;
     }
 
-//    private static void validateBySize(File[] files, long storageSize) throws Exception {
-//        int i = 0;
-//        for (File el : files) {
-//            if (el != null)
-//                i += el.getSize();
-//        }
-//        if (i > storageSize)
-//            throw new Exception("size is too large");
-//    }
+    public long getStorageSize() {
+        return storageSize;
+    }
 }

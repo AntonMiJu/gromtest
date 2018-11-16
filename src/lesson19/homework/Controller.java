@@ -6,7 +6,7 @@ public class Controller {
         validate(storage, file);
         for (int i = 0; i < storageFiles.length; i++) {
             if (storageFiles[i] == null) {
-                storage.addFile(i,file);
+                storage.addFile(i, file);
                 break;
             }
         }
@@ -27,14 +27,17 @@ public class Controller {
         File[] storageF = storageFrom.getFiles();
         File[] storageT = storageTo.getFiles();
         int arrayToLength = 0;
-        for (File el : storageT){
-            if (el==null)
+        for (File el : storageT) {
+            if (el == null)
                 arrayToLength++;
         }
-        if (storageF.length>arrayToLength)
+        if (storageF.length > arrayToLength)
             throw new Exception("StorageTo  is smaller");
-        for (int i = 0; i<storageF.length;i++){
-            put(storageTo,storageF[i]);
+        for (File el : storageF) {
+            validate(storageTo, el);
+        }
+        for (int i = 0; i < storageF.length; i++) {
+            put(storageTo, storageF[i]);
         }
     }
 
@@ -61,16 +64,37 @@ public class Controller {
         return false;
     }
 
-    private static void validate(Storage storage, File file) throws Exception{
+    private static boolean fileCorrectFormat(String[] formats, File file) {
+        if (formats == null)
+            return false;
+        for (int i = 0; i < formats.length; i++) {
+            if (formats[i] != null && formats[i].equals(file.getFormat()))
+                return true;
+        }
+        return false;
+    }
+
+    private static void validate(Storage storage, File file) throws Exception {
         File[] storageFiles = storage.getFiles();
         if (fileInArray(storageFiles, file))
             throw new Exception("File " + file.getId() + " is already in BD " + storage.getId());
         int index = 0;
-        for (int i = 0; i < storageFiles.length; i++) {
-            if (storageFiles[i] != null)
+        for (File storageFile : storageFiles) {
+            if (storageFile != null)
                 index++;
         }
         if (!fileInArray(storageFiles, file) || index == storageFiles.length)
             throw new Exception("BD " + storage.getId() + " can not put file " + file.getId());
+
+        if (!fileCorrectFormat(storage.getFormatsSupported(), file))
+            throw new Exception("not that format");
+
+        int sizeSum = 0;
+        for (File el : storage.getFiles()) {
+            if (el != null)
+                sizeSum += el.getSize();
+        }
+        if (sizeSum > storage.getStorageSize())
+            throw new Exception("Haven't enough memory for save file");
     }
 }
