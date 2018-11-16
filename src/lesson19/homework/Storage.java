@@ -10,19 +10,19 @@ public class Storage {
     public Storage(long id, File[] files, String[] formatsSupported, String storageCountry, long storageSize) throws Exception {
         this.id = id;
         this.files = files;
-        for (File el : files) {
-            if (!fileInArray(formatsSupported, el))
-                throw new Exception("not that format");
-        }
+//        for (File el : files) {
+//            if (!fileInArray(formatsSupported, el))
+//                throw new Exception("not that format");
+//        }
         this.formatsSupported = formatsSupported;
         this.storageCountry = storageCountry;
         int i = 0;
-        for (File el : files) {
-            if (el != null)
-                i += el.getSize();
-        }
-        if (i > storageSize)
-            throw new Exception("size is too large");
+//        for (File el : files) {
+//            if (el != null)
+//                i += el.getSize();
+//        }
+//        if (i > storageSize)
+//            throw new Exception("size is too large");
         this.storageSize = storageSize;
     }
 
