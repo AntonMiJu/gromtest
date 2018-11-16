@@ -57,8 +57,8 @@ public class Controller {
     private static boolean fileInArray(File[] files, File file) {
         if (files == null)
             return false;
-        for (int i = 0; i < files.length; i++) {
-            if (files[i] != null && files[i].equals(file))
+        for (File file1 : files) {
+            if (file1 != null && file1.equals(file))
                 return true;
         }
         return false;
@@ -67,14 +67,16 @@ public class Controller {
     private static boolean fileCorrectFormat(String[] formats, File file) {
         if (formats == null)
             return false;
-        for (int i = 0; i < formats.length; i++) {
-            if (formats[i] != null && formats[i].equals(file.getFormat()))
+        for (String format : formats) {
+            if (format != null && format.equals(file.getFormat()))
                 return true;
         }
         return false;
     }
 
     private static void validate(Storage storage, File file) throws Exception {
+        if (storage == null )
+            throw new Exception("Null storage");
         File[] storageFiles = storage.getFiles();
         if (fileInArray(storageFiles, file))
             throw new Exception("File " + file.getId() + " is already in BD " + storage.getId());
