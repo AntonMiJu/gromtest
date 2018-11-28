@@ -1,7 +1,5 @@
 package lesson28.task2;
 
-import lesson28.Capability;
-
 import java.util.Comparator;
 
 public class IsActiveComparator implements Comparator<Capability> {
