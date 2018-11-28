@@ -1,4 +1,6 @@
-package lesson28;
+package lesson28.task2;
+
+import lesson28.Capability;
 
 import java.util.Comparator;
 

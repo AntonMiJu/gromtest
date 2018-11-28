@@ -1,5 +1,7 @@
 package lesson28;
 
+import lesson28.task2.IsActiveComparator;
+
 import java.util.*;
 
 public class DemoComparator {
