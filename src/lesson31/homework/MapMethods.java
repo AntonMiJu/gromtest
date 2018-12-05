@@ -8,7 +8,7 @@ public class MapMethods {
         if (text == null)
             return null;
         char[] chars = text.toCharArray();
-        HashMap<String,Integer> result = null;
+        HashMap<String,Integer> result = new HashMap<>();
         for (char ch : chars){
             if ((ch != ' ') && Character.isLetter(ch) && !(result.containsKey(ch)))
                 result.put(Character.toString(ch),countSymbolsByChar(ch,chars));
@@ -20,7 +20,7 @@ public class MapMethods {
         if (text == null)
             return null;
         String[] strings = text.split(" ");
-        HashMap<String,Integer> result = null;
+        HashMap<String,Integer> result = new HashMap<>();
         for (String str : strings){
             if ((str != null) && !validate(str) && !(result.containsKey(str)))
                 result.put(str,countWordsByString(str,strings));
