@@ -21,8 +21,9 @@ public class Controller {
     public HashSet<Employee> employeesByProject(String projectName) {
         HashSet<Employee> result = null;
         for (Employee em : employees) {
-            if (em.getProjects().projects.contains(projectName)) {
-                result.add(em);
+            for (Project pr : em.getProjects().projects){
+                if (pr.getName().equals(projectName))
+                    result.add(em);
             }
         }
         return result;
