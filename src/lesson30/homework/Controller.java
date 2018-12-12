@@ -41,7 +41,7 @@ public class Controller {
             }
         }
         for (Employee em : department.getEmployees().employees) {
-            if (em.getProjects().projects == null)
+            if (em.getProjects().projects.size() == 0)
                 result.add(em);
         }
         return result;
@@ -50,7 +50,7 @@ public class Controller {
     public HashSet<Employee> employeesWithoutProject() {
         HashSet<Employee> result = null;
         for (Employee em : employees) {
-            if (em.getProjects().projects == null)
+            if (em.getProjects().projects.size() == 0)
                 result.add(em);
         }
         return result;
