@@ -3,6 +3,8 @@ package lesson30.homework;
 import lesson30.homework.DAOpackage.EmployeeDAO;
 import lesson30.homework.ENUMs.DepartmentType;
 
+import java.util.HashSet;
+
 public class Department {
     private DepartmentType type;
     private EmployeeDAO employees;
@@ -16,8 +18,8 @@ public class Department {
         return type;
     }
 
-    public EmployeeDAO getEmployees() {
-        return employees;
+    public HashSet<Employee> getEmployees() {
+        return employees.employees;
     }
 
     @Override

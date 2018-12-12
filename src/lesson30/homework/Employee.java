@@ -4,6 +4,7 @@ import lesson30.homework.DAOpackage.ProjectDAO;
 import lesson30.homework.ENUMs.Position;
 
 import java.util.Date;
+import java.util.HashSet;
 
 public class Employee {
     private String firstName;
@@ -28,8 +29,8 @@ public class Employee {
         return department;
     }
 
-    public ProjectDAO getProjects() {
-        return projects;
+    public HashSet<Project> getProjects() {
+        return projects.projects;
     }
 
     @Override

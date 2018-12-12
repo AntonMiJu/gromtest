@@ -21,7 +21,7 @@ public class Controller {
     public HashSet<Employee> employeesByProject(String projectName) {
         HashSet<Employee> result = null;
         for (Employee em : employees) {
-            for (Project pr : em.getProjects().projects){
+            for (Project pr : em.getProjects()){
                 if (pr.getName().equals(projectName))
                     result.add(em);
             }
@@ -30,7 +30,7 @@ public class Controller {
     }
 
     public HashSet<Project> projectByEmployees(Employee employee) {
-        return employee.getProjects().projects;
+        return employee.getProjects();
     }
 
     public HashSet<Employee> employeesByDepartmentWithoutProject(DepartmentType departmentType) {
@@ -41,8 +41,8 @@ public class Controller {
                 department = dp;
             }
         }
-        for (Employee em : department.getEmployees().employees) {
-            if (em.getProjects().projects.size() == 0)
+        for (Employee em : department.getEmployees()) {
+            if (em.getProjects().size() == 0)
                 result.add(em);
         }
         return result;
@@ -51,7 +51,7 @@ public class Controller {
     public HashSet<Employee> employeesWithoutProject() {
         HashSet<Employee> result = null;
         for (Employee em : employees) {
-            if (em.getProjects().projects.size() == 0)
+            if (em.getProjects().size() == 0)
                 result.add(em);
         }
         return result;
@@ -59,7 +59,7 @@ public class Controller {
 
     public HashSet<Employee> employeesByTeamLead(Employee lead) {
         HashSet<Employee> result = null;
-        for (Project pr : lead.getProjects().projects) {
+        for (Project pr : lead.getProjects()) {
             result.addAll(employeesByProject(pr.getName()));
         }
         return result;
@@ -67,7 +67,7 @@ public class Controller {
 
     public HashSet<Employee> teamLeadsByEmployee(Employee employee) {
         HashSet<Employee> result = null;
-        for (Project pr : employee.getProjects().projects){
+        for (Project pr : employee.getProjects()){
             for (Employee em : employeesByProject(pr.getName())){
                 if (em.getPosition().equals(Position.TEAM_LEAD))
                     result.add(em);
@@ -78,7 +78,7 @@ public class Controller {
 
     public HashSet<Employee> employeesByProjectEmployee(Employee employee) {
         HashSet<Employee> result = null;
-        for (Project pr : employee.getProjects().projects){
+        for (Project pr : employee.getProjects()){
             result.addAll(employeesByProject(pr.getName()));
         }
         return result;
