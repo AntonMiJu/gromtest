@@ -12,7 +12,9 @@ public class ReadFromConsole {
         System.out.println("Please, enter file path to read:");
 
         try {
-            readFile(br.readLine());
+            String line;
+            if ((line = br.readLine()) != null)
+                readFile(line);
         } catch (IOException e){
             System.err.println();
         } finally {
