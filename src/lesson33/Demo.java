@@ -2,8 +2,10 @@ package lesson33;
 
 public class Demo {
     public static void main(String[] args) {
-        ReadWriteFile readWriteFile = new ReadWriteFile();
-        readWriteFile.readFile("/home/anton/Desktop/test.txt");
-        readWriteFile.writeFile("/home/anton/Desktop/test1.txt");
+        ReadWriteFile.readFile("/home/anton/test.txt");
+        ReadWriteFile.writeFile("/home/anton/test.txt");
+
+        System.out.println();
+        ReadWriteFile.readFile("/home/anton/test.txt");
     }
 }
