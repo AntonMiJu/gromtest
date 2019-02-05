@@ -1,9 +1,7 @@
 package lesson35.repository;
 
-import lesson35.controller.RoomController;
 import lesson35.controller.UserController;
 import lesson35.model.Room;
-import lesson35.model.User;
 import lesson35.service.RoomService;
 
 import java.io.*;
@@ -11,7 +9,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class RoomRepository {
-    private String path = "";
+    private String path = "/home/anton/RoomDB.txt";
     private UserController userController = new UserController();
     private RoomService roomService = new RoomService();
 

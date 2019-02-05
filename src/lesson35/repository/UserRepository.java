@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class UserRepository {
-    private String path = "";
+    private String path = "/home/anton/UserDB.txt";
     //read data - read file
     //work with data - mapping data
     public ArrayList<User> readFile() {

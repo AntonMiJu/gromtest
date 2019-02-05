@@ -10,7 +10,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class OrderRepository {
-    private String path = "";
+    private String path = "/home/anton/Order.txt";
     private UserController userController = new UserController();
 
     //read data - read file
