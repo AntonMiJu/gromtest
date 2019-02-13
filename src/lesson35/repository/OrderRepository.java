@@ -1,5 +1,6 @@
 package lesson35.repository;
 
+import lesson35.controller.RoomController;
 import lesson35.controller.UserController;
 import lesson35.model.Order;
 import lesson35.model.Room;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 public class OrderRepository {
     private String path = "/home/anton/Order.txt";
     private UserController userController = new UserController();
+    private RoomController roomController = new RoomController();
 
     //read data - read file
     //work with data - mapping data
@@ -24,7 +26,7 @@ public class OrderRepository {
             while ((line = br.readLine()) != null) {
                 array = line.split(",");
                 User user = userController.findUserById(Long.parseLong(array[1].trim()));
-                Room room = userController.findRoomById(Long.parseLong(array[1].trim()));
+                Room room = roomController.findRoomById(Long.parseLong(array[1].trim()));
                 orders.add(new Order(Long.parseLong(array[0].trim()), user, room, Date.valueOf(array[3].trim()), Date.valueOf(array[4].trim()), Double.parseDouble(array[5].trim())));
             }
             return orders;

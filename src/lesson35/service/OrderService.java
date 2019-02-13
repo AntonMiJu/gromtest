@@ -1,5 +1,6 @@
 package lesson35.service;
 
+import lesson35.controller.RoomController;
 import lesson35.controller.UserController;
 import lesson35.model.Order;
 import lesson35.model.Room;
@@ -11,18 +12,18 @@ import java.util.Date;
 
 public class OrderService {
     private OrderRepository orderRepository = new OrderRepository();
-    private UserController userController = new UserController();
+    private RoomController roomController = new RoomController();
     private RoomRepository roomRepository = new RoomRepository();
+    private UserController userController = new UserController();
 
     public void cancelReservation(long roomId, long userId) {
-        Order[] orders = (Order[]) orderRepository.readFile().toArray();
         Date availableFrom = null;
         Room chRoom;
-        for (Order el : orders){
+        for (Order el : orderRepository.readFile()){
             if (el.getRoom().getId() == roomId && el.getUser().getId()==userId)
                 availableFrom = el.getDateFrom();
         }
-        chRoom = userController.findRoomById(roomId);
+        chRoom = roomController.findRoomById(roomId);
         chRoom.setDateAvailableFrom(availableFrom);
         roomRepository.deleteRoom(roomId);
         roomRepository.addRoom(chRoom);
@@ -30,15 +31,14 @@ public class OrderService {
     }
 
     public void bookRoom(long roomId, long userId, long hotelId){
-        Order[] orders = (Order[]) orderRepository.readFile().toArray();
         Room chRoom;
         Calendar cal = Calendar.getInstance();
-        cal.setTime(userController.findRoomById(roomId).getDateAvailableFrom());
+        cal.setTime(roomController.findRoomById(roomId).getDateAvailableFrom());
         cal.add(Calendar.DATE, 3);
-        chRoom = userController.findRoomById(roomId);
+        chRoom = roomController.findRoomById(roomId);
         chRoom.setDateAvailableFrom(cal.getTime());
         roomRepository.deleteRoom(roomId);
         roomRepository.addRoom(chRoom);
-        orderRepository.writeFile(new Order(userController.findRoomById(roomId).hashCode(),userController.findUserById(userId),userController.findRoomById(roomId),userController.findRoomById(roomId).getDateAvailableFrom(),cal.getTime(),userController.findRoomById(roomId).getPrice()));
+        orderRepository.writeFile(new Order(roomController.findRoomById(roomId).hashCode(),userController.findUserById(userId),roomController.findRoomById(roomId),roomController.findRoomById(roomId).getDateAvailableFrom(),cal.getTime(),roomController.findRoomById(roomId).getPrice()));
     }
 }

@@ -1,5 +1,6 @@
 package lesson35.repository;
 
+import lesson35.controller.HotelController;
 import lesson35.controller.UserController;
 import lesson35.model.Room;
 import lesson35.service.RoomService;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public class RoomRepository {
     private String path = "/home/anton/RoomDB.txt";
-    private UserController userController = new UserController();
+    private HotelController hotelController = new HotelController();
     private RoomService roomService = new RoomService();
 
     //read data - read file
@@ -24,7 +25,7 @@ public class RoomRepository {
             while ((line = br.readLine()) != null) {
                 array = line.split(",");
                 long s = Long.parseLong(array[6].trim());
-                rooms.add(new Room(Long.parseLong(array[0].trim()), Integer.parseInt(array[1].trim()),Double.parseDouble(array[2].trim()),Boolean.parseBoolean(array[3].trim()),Boolean.parseBoolean(array[4].trim()), Date.valueOf(array[5].trim()),userController.findHotelById(s)));
+                rooms.add(new Room(Long.parseLong(array[0].trim()), Integer.parseInt(array[1].trim()),Double.parseDouble(array[2].trim()),Boolean.parseBoolean(array[3].trim()),Boolean.parseBoolean(array[4].trim()), Date.valueOf(array[5].trim()),hotelController.findHotelById(s)));
             }
             return rooms;
         } catch (FileNotFoundException e) {
