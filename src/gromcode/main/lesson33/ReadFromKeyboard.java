@@ -1,6 +1,6 @@
 package gromcode.main.lesson33;
 
-import org.apache.commons.io.IOUtils;
+//import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -42,8 +42,8 @@ public class ReadFromKeyboard {
         } catch (IOException e){
             System.err.println("Reading from keyboard failed");
         } finally {
-            IOUtils.closeQuietly(reader);
-            IOUtils.closeQuietly(br);
+//            IOUtils.closeQuietly(reader);
+//            IOUtils.closeQuietly(br);
         }
     }
 }
