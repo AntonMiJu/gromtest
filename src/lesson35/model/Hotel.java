@@ -15,9 +15,6 @@ public class Hotel extends GeneralClass{
         this.street = street;
     }
 
-    public Hotel() {
-    }
-
     public long getId() {
         return id;
     }
@@ -42,11 +39,4 @@ public class Hotel extends GeneralClass{
     public String toString() {
         return id + "," + name+ "," + country + "," + city+ "," + street;
     }
-
-    @Override
-    public Hotel fromStringToObject(String[] array) {
-        return new Hotel(Long.parseLong(array[0].trim()), array[1].trim(), array[2].trim(), array[3].trim(), array[4].trim());
-    }
-
-
 }

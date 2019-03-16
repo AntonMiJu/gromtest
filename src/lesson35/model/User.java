@@ -15,9 +15,6 @@ public class User extends GeneralClass{
         this.userType = userType;
     }
 
-    public User() {
-    }
-
     public long getId() {
         return id;
     }
@@ -41,10 +38,5 @@ public class User extends GeneralClass{
     @Override
     public String toString() {
         return id + "," + userName + "," + password + "," + country + "," + userType;
-    }
-
-    @Override
-    public User fromStringToObject(String[] array) {
-        return new User(Long.parseLong(array[0].trim()),array[1].trim(),array[2].trim(),array[3].trim(),UserType.valueOf(array[4].trim()));
     }
 }

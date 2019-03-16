@@ -24,9 +24,6 @@ public class Room extends GeneralClass{
         this.hotel = hotel;
     }
 
-    public Room() {
-    }
-
     public void setDateAvailableFrom(Date dateAvailableFrom) {
         this.dateAvailableFrom = dateAvailableFrom;
     }
@@ -62,10 +59,5 @@ public class Room extends GeneralClass{
     @Override
     public String toString() {
         return id + "," + numberOfGuests + "," + price + "," + breakfastIncluded + "," + petsAllowed + "," + dateAvailableFrom + "," + hotel.getId();
-    }
-
-    @Override
-    public Room fromStringToObject(String[] array) {
-        return new Room(Long.parseLong(array[0].trim()), Integer.parseInt(array[1].trim()),Double.parseDouble(array[2].trim()),Boolean.parseBoolean(array[3].trim()),Boolean.parseBoolean(array[4].trim()), java.sql.Date.valueOf(array[5].trim()),generalService.findObjectById(Long.parseLong(array[6].trim())));
     }
 }
