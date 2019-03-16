@@ -1,6 +1,6 @@
 package lesson35.model;
 
-public class User {
+public class User extends GeneralClass{
     private long id;
     private String userName;
     private String password;
@@ -13,6 +13,9 @@ public class User {
         this.password = password;
         this.country = country;
         this.userType = userType;
+    }
+
+    public User() {
     }
 
     public long getId() {
@@ -33,5 +36,15 @@ public class User {
 
     public UserType getUserType() {
         return userType;
+    }
+
+    @Override
+    public String toString() {
+        return id + "," + userName + "," + password + "," + country + "," + userType;
+    }
+
+    @Override
+    public User fromStringToObject(String[] array) {
+        return new User(Long.parseLong(array[0].trim()),array[1].trim(),array[2].trim(),array[3].trim(),UserType.valueOf(array[4].trim()));
     }
 }

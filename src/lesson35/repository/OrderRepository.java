@@ -41,7 +41,7 @@ public class OrderRepository {
     public void writeFile(Order order) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
             bufferedWriter.append("\n");
-            bufferedWriter.append(order.getId() + "," + order.getUser().getId() + "," + order.getRoom().getId() + "," + order.getDateFrom() + "," + order.getDateTo() + "," + order.getMoneyPaid());
+            bufferedWriter.append(order.toString());
         } catch (IOException e) {
             System.err.println("Can't write to file" + path);
         }

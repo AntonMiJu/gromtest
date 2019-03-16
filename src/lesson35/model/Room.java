@@ -1,8 +1,10 @@
 package lesson35.model;
 
+import lesson35.service.GeneralService;
+
 import java.util.Date;
 
-public class Room {
+public class Room extends GeneralClass{
     private long id;
     private int numberOfGuests;
     private double price;
@@ -10,6 +12,7 @@ public class Room {
     private boolean petsAllowed;
     private Date dateAvailableFrom;
     private Hotel hotel;
+    private GeneralService<Hotel> generalService = new GeneralService<>();
 
     public Room(long id, int numberOfGuests, double price, boolean breakfastIncluded, boolean petsAllowed, Date dateAvailableFrom, Hotel hotel) {
         this.id = id;
@@ -19,6 +22,9 @@ public class Room {
         this.petsAllowed = petsAllowed;
         this.dateAvailableFrom = dateAvailableFrom;
         this.hotel = hotel;
+    }
+
+    public Room() {
     }
 
     public void setDateAvailableFrom(Date dateAvailableFrom) {
@@ -51,5 +57,15 @@ public class Room {
 
     public Hotel getHotel() {
         return hotel;
+    }
+
+    @Override
+    public String toString() {
+        return id + "," + numberOfGuests + "," + price + "," + breakfastIncluded + "," + petsAllowed + "," + dateAvailableFrom + "," + hotel.getId();
+    }
+
+    @Override
+    public Room fromStringToObject(String[] array) {
+        return new Room(Long.parseLong(array[0].trim()), Integer.parseInt(array[1].trim()),Double.parseDouble(array[2].trim()),Boolean.parseBoolean(array[3].trim()),Boolean.parseBoolean(array[4].trim()), java.sql.Date.valueOf(array[5].trim()),generalService.findObjectById(Long.parseLong(array[6].trim())));
     }
 }

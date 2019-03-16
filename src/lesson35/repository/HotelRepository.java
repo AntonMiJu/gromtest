@@ -17,9 +17,10 @@ public class HotelRepository {
             ArrayList<Hotel> hotels = new ArrayList<>();
             String[] array;
             String line;
+            Hotel hotel = null;
             while ((line = br.readLine()) != null) {
                 array = line.split(",");
-                hotels.add(new Hotel(Long.parseLong(array[0].trim()), array[1].trim(), array[2].trim(), array[3].trim(), array[4].trim()));
+                hotels.add((Hotel) hotel.fromStringToObject(array));
             }
             return hotels;
         } catch (FileNotFoundException e) {
@@ -33,7 +34,7 @@ public class HotelRepository {
     public void addHotel(Hotel hotel) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
             bufferedWriter.append("\n");
-            bufferedWriter.append(transferHotelToString(hotel));
+            bufferedWriter.append(hotel.toString());
         } catch (IOException e) {
             System.err.println("Can't write to file" + path);
         }
@@ -52,7 +53,7 @@ public class HotelRepository {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (!line.equals(transferHotelToString(hotelService.findHotelById(id)))){
+                if (!line.equals(hotelService.findHotelById(id).toString())){
                     res.append(line);
                     res.append("\n");
                 }
@@ -62,9 +63,5 @@ public class HotelRepository {
             System.out.println("Reading from file " + path + " failed");
         }
         return res;
-    }
-
-    private String transferHotelToString(Hotel hotel){
-        return hotel.getId() + "," + hotel.getName() + "," + hotel.getCountry() + "," + hotel.getCity() + "," + hotel.getStreet();
     }
 }

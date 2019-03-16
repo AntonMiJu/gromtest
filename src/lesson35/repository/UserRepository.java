@@ -17,7 +17,8 @@ public class UserRepository {
             String line;
             while ((line = br.readLine()) != null) {
                 array = line.split(",");
-                users.add(new User(Long.parseLong(array[0].trim()),array[1].trim(),array[2].trim(),array[3].trim(),UserType.valueOf(array[4].trim())));
+                User user = new User();
+                users.add(user.fromStringToObject(array));
             }
             return users;
         } catch (FileNotFoundException e) {
@@ -31,7 +32,7 @@ public class UserRepository {
     public User registerUser(User user) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
             bufferedWriter.append("\n");
-            bufferedWriter.append(user.getId()+","+user.getUserName()+","+user.getPassword()+","+user.getCountry()+","+user.getUserType());
+            bufferedWriter.append(user.toString());
             return user;
         } catch (IOException e) {
             System.err.println("Can't write to file" + path);

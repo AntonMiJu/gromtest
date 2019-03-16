@@ -11,7 +11,6 @@ import java.util.ArrayList;
 
 public class RoomRepository {
     private String path = "/home/anton/RoomDB.txt";
-    private HotelController hotelController = new HotelController();
     private RoomService roomService = new RoomService();
 
     //read data - read file
@@ -24,8 +23,8 @@ public class RoomRepository {
             String line;
             while ((line = br.readLine()) != null) {
                 array = line.split(",");
-                long s = Long.parseLong(array[6].trim());
-                rooms.add(new Room(Long.parseLong(array[0].trim()), Integer.parseInt(array[1].trim()),Double.parseDouble(array[2].trim()),Boolean.parseBoolean(array[3].trim()),Boolean.parseBoolean(array[4].trim()), Date.valueOf(array[5].trim()),hotelController.findHotelById(s)));
+                Room room = new Room();
+                rooms.add(room.fromStringToObject(array));
             }
             return rooms;
         } catch (FileNotFoundException e) {
@@ -39,7 +38,7 @@ public class RoomRepository {
     public void addRoom(Room room) {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
             bufferedWriter.append("\n");
-            bufferedWriter.append((transferRoomToString(room)));
+            bufferedWriter.append(room.toString());
         } catch (IOException e) {
             System.err.println("Can't write to file" + path);
         }
@@ -58,7 +57,7 @@ public class RoomRepository {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (!line.equals(transferRoomToString(roomService.findRoomById(id)))){
+                if (!line.equals(roomService.findRoomById(id).toString())){
                     res.append(line);
                     res.append("\n");
                 }
@@ -68,9 +67,5 @@ public class RoomRepository {
             System.out.println("Deleting from file " + path + " failed");
         }
         return res;
-    }
-
-    private String transferRoomToString(Room room){
-        return room.getId()+","+room.getNumberOfGuests()+","+room.getPrice()+","+room.isBreakfastIncluded()+","+room.isPetsAllowed()+","+room.getDateAvailableFrom()+","+room.getHotel().getId();
     }
 }
